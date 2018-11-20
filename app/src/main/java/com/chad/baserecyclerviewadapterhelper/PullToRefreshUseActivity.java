@@ -59,6 +59,7 @@ class Request extends Thread {
         } else {
             int size = PAGE_SIZE;
             if (mPage == 1) {
+//                如果第一页没有更多数据
                 if (mFirstPageNoMore) {
                     size = 1;
                 }
@@ -85,6 +86,7 @@ class Request extends Thread {
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
  */
 public class PullToRefreshUseActivity extends BaseActivity {
+
 
     private static final int PAGE_SIZE = 6;
 
