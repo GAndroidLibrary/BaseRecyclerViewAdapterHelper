@@ -86,6 +86,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
 
     }
 
+   //  因为增加了组头（塞进去了头），所以数据源和布局，需要特殊计算位置等等。
     private int getClickPosition() {
         if (getLayoutPosition()>=adapter.getHeaderLayoutCount()){
             return getLayoutPosition() - adapter.getHeaderLayoutCount();

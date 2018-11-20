@@ -21,6 +21,8 @@ public abstract class BaseSectionMultiItemQuickAdapter<T extends SectionMultiEnt
      */
     private SparseIntArray layouts;
 
+    private SparseIntArray sectionLayouts;
+
     private static final int DEFAULT_VIEW_TYPE = -0xff;
     public static final int TYPE_NOT_FOUND = -404;
 
@@ -57,12 +59,21 @@ public abstract class BaseSectionMultiItemQuickAdapter<T extends SectionMultiEnt
     @Override
     protected K onCreateDefViewHolder(ViewGroup parent, int viewType) {
         // add this to check viewType of section
-        if (viewType == SECTION_HEADER_VIEW)
+        if (viewType == SECTION_HEADER_VIEW) {
             return createBaseViewHolder(getItemView(mSectionHeadResId, parent));
+//            return createBaseViewHolder(parent, getLayoutId(viewType));
+        } else {
+            return createBaseViewHolder(parent, getLayoutId(viewType));
+        }
 
-        return createBaseViewHolder(parent, getLayoutId(viewType));
     }
 
+    /**
+     * seachal:layoutResId
+     *
+     * @param viewType
+     * @return
+     */
     private int getLayoutId(int viewType) {
         return layouts.get(viewType, TYPE_NOT_FOUND);
     }
@@ -70,8 +81,8 @@ public abstract class BaseSectionMultiItemQuickAdapter<T extends SectionMultiEnt
     /**
      * collect layout types you need
      *
-     * @param type             The key of layout type
-     * @param layoutResId      The layoutResId of layout type
+     * @param type        The key of layout type
+     * @param layoutResId The layoutResId of layout type
      */
     protected void addItemType(int type, @LayoutRes int layoutResId) {
         if (layouts == null) {
@@ -79,6 +90,15 @@ public abstract class BaseSectionMultiItemQuickAdapter<T extends SectionMultiEnt
         }
         layouts.put(type, layoutResId);
     }
+
+
+
+//    protected void addSessionType(int type, @LayoutRes int layoutResId) {
+//        if (sectionLayouts == null) {
+//            sectionLayouts = new SparseIntArray();
+//        }
+//        sectionLayouts.put(type, layoutResId);
+//    }
 
     @Override
     protected boolean isFixedViewType(int type) {

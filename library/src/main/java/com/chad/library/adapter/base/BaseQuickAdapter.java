@@ -757,6 +757,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         K baseViewHolder = null;
         this.mContext = parent.getContext();
         this.mLayoutInflater = LayoutInflater.from(mContext);
+//     seachal注释：  根据不同的viewType创建了不同的ViewHolder,
         switch (viewType) {
             case LOADING_VIEW:
                 baseViewHolder = getLoadingView(parent);
@@ -774,6 +775,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
                 baseViewHolder = onCreateDefViewHolder(parent, viewType);
                 bindViewClickListener(baseViewHolder);
         }
+//        seachal注释： 为什么要个baseViewHolder设置 adapter，也需要数据和view绑定吗？
         baseViewHolder.setAdapter(this);
         return baseViewHolder;
 

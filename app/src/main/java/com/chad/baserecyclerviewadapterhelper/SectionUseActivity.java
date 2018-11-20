@@ -36,10 +36,11 @@ public class SectionUseActivity extends BaseActivity {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 MySection mySection = mData.get(position);
-                if (mySection.isHeader)
+                if (mySection.isHeader) {
                     Toast.makeText(SectionUseActivity.this, mySection.header, Toast.LENGTH_LONG).show();
-                else
+                } else {
                     Toast.makeText(SectionUseActivity.this, mySection.t.getName(), Toast.LENGTH_LONG).show();
+                }
             }
         });
         sectionAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
